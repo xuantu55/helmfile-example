@@ -15,15 +15,3 @@ containerPort: 80
 service:
   port: 80
   type: ClusterIP
-
-# Thêm values cho cronjob
-cronjob:
-  schedule: "*/5 * * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-            - name: cronjob-container
-              image: your-cronjob-image:tag
-              command: ["/bin/sh", "-c", "your-command"]
