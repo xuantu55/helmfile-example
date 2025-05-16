@@ -1,13 +1,17 @@
+repositories:
+- name: generic-app
+  url: https://github.com/xuantu55/helm-chart-example.git
+
 releases:
   - name: frontend
     namespace: default
-    chart: ./charts/generic-app
+#    chart: ./charts/generic-app
     values:
       - ./values/frontend-values.yaml
     installed: true
   - name: backend
     namespace: default
-    chart: ./charts/generic-app
+#    chart: ./charts/generic-app
     values:
       - ./values/backend-values.yaml
     installed: true

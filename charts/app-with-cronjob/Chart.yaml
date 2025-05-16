@@ -1,7 +1,0 @@
-apiVersion: v2
-name: app-with-cronjob
-version: 0.1.0
-dependencies:
-  - name: generic-app
-    version: "0.1.0"
-    repository: "file://../generic-app"
