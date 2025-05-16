@@ -1,0 +1,17 @@
+appName: generic-app
+namespace: default
+replicaCount: 1
+image:
+  repository: nginx
+  tag: latest
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+containerPort: 80
+service:
+  port: 80
+  type: ClusterIP

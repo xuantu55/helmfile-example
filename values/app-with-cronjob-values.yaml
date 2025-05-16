@@ -1,0 +1,29 @@
+generic-app:
+  appName: payment-test
+  namespace: default
+  replicaCount: 2
+  image:
+  repository: my-payment
+  tag: v1.0.0
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  containerPort: 8080
+  service:
+    port: 80
+    type: LoadBalancer
+
+cronjob:
+  schedule: "* * 1 * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: cronjob-container
+              image: your-cronjob-image:tag
+              command: ["/bin/sh", "-c", "your-command"]

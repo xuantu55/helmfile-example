@@ -1,0 +1,17 @@
+appName: backend
+namespace: default
+replicaCount: 1
+image:
+  repository: my-backend
+  tag: v1.0.0
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "500m"
+  limits:
+    memory: "1Gi"
+    cpu: "1"
+containerPort: 3000
+service:
+  port: 80
+  type: ClusterIP

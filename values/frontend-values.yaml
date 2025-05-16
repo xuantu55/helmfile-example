@@ -1,0 +1,17 @@
+appName: frontend
+namespace: default
+replicaCount: 2
+image:
+  repository: my-frontend
+  tag: v1.0.0
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+containerPort: 8080
+service:
+  port: 80
+  type: LoadBalancer
