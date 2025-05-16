@@ -1,8 +1,7 @@
 repositories:
 - name: generic-app
-  url: https://github.com/xuantu55/helm-chart-example.git
+  url: git+https://github.com/xuantu55/helm-chart-example.git
   oci: false
-  type: git
 
 releases:
   - name: frontend
