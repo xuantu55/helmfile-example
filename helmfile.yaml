@@ -5,13 +5,13 @@ repositories:
 releases:
   - name: frontend
     namespace: default
-#    chart: ./charts/generic-app
+    chart: generic-app/generic-app
     values:
       - ./values/frontend-values.yaml
     installed: true
   - name: backend
     namespace: default
-#    chart: ./charts/generic-app
+    chart: generic-app/generic-app
     values:
       - ./values/backend-values.yaml
     installed: true
