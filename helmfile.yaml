@@ -12,7 +12,7 @@ releases:
       - ./values/backend-values.yaml
     installed: true
   - name: app-with-cronjob
-    namespace: default
+    namespace: guestbook
     chart: ./charts/app-with-cronjob
     values:
       - ./values/app-with-cronjob-values.yaml
