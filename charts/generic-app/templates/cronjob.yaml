@@ -3,8 +3,6 @@ kind: CronJob
 metadata:
   name: {{ .Release.Name }}-cronjob
   namespace: {{ .Release.Namespace }}
-  labels:
-    app: {{ .Values.appName }}  
 spec:
   schedule: {{ .Values.cronjob.schedule | quote }}
   jobTemplate:
