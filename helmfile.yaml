@@ -1,23 +1,18 @@
 repositories:
-- name: generic-app
-  url: https://xuantu55.github.io/helm-chart-example
+  - name: generic-app
+    url: https://xuantu55.github.io/helm-chart-example
 
 releases:
-  - name: frontend
+  - name: my-generic-app
     namespace: default
     chart: generic-app/generic-app
+    version: 0.1.0
     values:
-      - ./values/frontend-values.yaml
-    installed: true
-  - name: backend
+      - values/generic-app.yaml
+
+  - name: my-app-with-cronjob
     namespace: default
-    chart: generic-app/generic-app
+    chart: generic-app/app-with-cronjob
+    version: 0.1.0
     values:
-      - ./values/backend-values.yaml
-    installed: true
-#  - name: app-with-cronjob
-#    namespace: guestbook
-#    chart: ./charts/app-with-cronjob
-#    values:
-#      - ./values/app-with-cronjob-values.yaml
-#    installed: true
+      - values/app-with-cronjob.yaml
