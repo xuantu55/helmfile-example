@@ -3,7 +3,7 @@ repositories:
     url: https://xuantu55.github.io/helm-chart-example
 
 releases:
-  - name: generic-app
+  - name: frontend
     namespace: default
     chart: generic-app/generic-app
     version: 0.1.0
@@ -12,7 +12,7 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/generic-app/environments/dev/values.yaml
+      - values/frontend/environments/dev/values.yaml
 #    hooks:
 #      - events: ["prepare", "cleanup"]
 #        showlogs: true
