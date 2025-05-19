@@ -8,11 +8,11 @@ releases:
     chart: generic-app/generic-app
     version: 0.1.0
     values:
-      - values/generic-app.yaml
+      - values/frontend-values.yaml
 
   - name: my-app-with-cronjob
     namespace: default
     chart: generic-app/app-with-cronjob
     version: 0.1.0
     values:
-      - values/app-with-cronjob.yaml
+      - values/app-with-cronjob-values.yaml
