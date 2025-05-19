@@ -12,7 +12,7 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/frontend/environments/dev/values.yaml
+      - values/frontend/dev/values.yaml
 #    hooks:
 #      - events: ["prepare", "cleanup"]
 #        showlogs: true
@@ -30,6 +30,6 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/app-with-cronjob/environments/dev/values.yaml
+      - values/app-with-cronjob/dev/values.yaml
 #    needs:
 #      - generic-app
