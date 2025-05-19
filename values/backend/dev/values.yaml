@@ -2,8 +2,8 @@ appName: backend
 namespace: default
 replicaCount: 1
 image:
-  repository: my-backend
-  tag: v1.0.0
+  repository: nginx
+  tag: lastes
 resources:
   requests:
     memory: "512Mi"

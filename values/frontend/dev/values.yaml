@@ -2,8 +2,8 @@ appName: frontend
 namespace: default
 replicaCount: 2
 image:
-  repository: my-frontend
-  tag: v1.0.0
+  repository: nginx
+  tag: lastes
 resources:
   requests:
     memory: "256Mi"
@@ -14,4 +14,4 @@ resources:
 containerPort: 8080
 service:
   port: 80
-  type: LoadBalancer
+  type: ClusteIP

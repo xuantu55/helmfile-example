@@ -13,8 +13,10 @@ releases:
     atomic: true
     values:
       - values/frontend/dev/values.yaml
+    needs:
+      - backend
 
-  - name: app-with-cronjob
+  - name: backend
     namespace: default
     chart: generic-app/generic-app
     version: 0.1.0
@@ -23,6 +25,17 @@ releases:
     timeout: 600
     atomic: true
     values:
+      - values/backend/dev/values.yaml
+
+  - name: app-with-cronjob
+    namespace: default
+    chart: generic-app/app-with-cronjob
+    version: 0.1.0
+    installed: true
+    wait: true
+    timeout: 600
+    atomic: true
+    values:
       - values/app-with-cronjob/dev/values.yaml
     needs:
-      - frontend
+      - backend

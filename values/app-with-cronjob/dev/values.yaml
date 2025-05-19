@@ -3,8 +3,8 @@ generic-app:
   namespace: default
   replicaCount: 2
   image:
-  repository: my-payment
-  tag: v1.0.0
+  repository: nginx
+  tag: lastes
   resources:
     requests:
       memory: "256Mi"
@@ -15,7 +15,7 @@ generic-app:
   containerPort: 8080
   service:
     port: 80
-    type: LoadBalancer
+    type: ClusterIP
 
 cronjob:
   schedule: "* * 1 * *"
@@ -24,6 +24,6 @@ cronjob:
       template:
         spec:
           containers:
-            - name: cronjob-container
-              image: your-cronjob-image:tag
-              command: ["/bin/sh", "-c", "your-command"]
+            - name: busybox
+              image: busybox:lastes
+              command: ["/bin/sh", "-c", "DONE"]
