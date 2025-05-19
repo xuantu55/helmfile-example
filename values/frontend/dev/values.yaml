@@ -3,7 +3,7 @@ namespace: default
 replicaCount: 2
 image:
   repository: nginx
-  tag: lastes
+  tag: latest
 resources:
   requests:
     memory: "256Mi"
