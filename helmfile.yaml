@@ -1,49 +1,35 @@
-environments:
-  default:
-    values:
-      - environments/dev/values.yaml
-  dev:
-    values:
-      - environments/dev/values.yaml
-  staging:
-    values:
-      - environments/staging/values.yaml
-  prod:
-    values:
-      - environments/prod/values.yaml
-
 repositories:
   - name: generic-app
     url: https://xuantu55.github.io/helm-chart-example
 
 releases:
-  - name: {{ .Values.appName }}
-    namespace: {{ .Values.namespace | default "default" }}
+  - name: generic-app
+    namespace: default
     chart: generic-app/generic-app
-    version: {{ .Values.appVersion | default "0.1.0" }}
-    installed: {{ .Values.installed | default true }}
+    version: 0.1.0
+    installed: true
     wait: true
     timeout: 600
     atomic: true
     values:
-      - values/{{ .Values.appName }}{{ .Environment.Name }}/values.yaml
-    hooks:
-      - events: ["prepare", "cleanup"]
-        showlogs: true
-        command: "echo"
-        args: ["{{`{{.Release.Name}}`}}", "{{`{{.Environment.Name}}`}}"]
+      - values/generic-app/environments/dev/values.yaml
+#    hooks:
+#      - events: ["prepare", "cleanup"]
+#        showlogs: true
+#        command: "echo"
+#        args: ["{{`{{.Release.Name}}`}}", "{{`{{.Environment.Name}}`}}"]
     needs:
       - kube-system/ingress-nginx
 
-  - name: {{ .Values.appName }}
-    namespace: {{ .Values.namespace | default "default" }}
-    chart: generic-app/app-with-cronjob
-    version: {{ .Values.appVersion | default "0.1.0" }}
-    installed: {{ .Values.installed | default true }}
+  - name: app-with-cronjob
+    namespace: default
+    chart: generic-app/generic-app
+    version: 0.1.0
+    installed: true
     wait: true
     timeout: 600
     atomic: true
     values:
-      - values/{{ .Values.appName }}{{ .Environment.Name }}/values.yaml
+      - values/app-with-cronjob/environments/dev/values.yaml
     needs:
-      - my-generic-app
+      - generic-app
