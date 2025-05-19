@@ -38,3 +38,15 @@ releases:
       - values/app-with-cronjob/dev/values.yaml
     needs:
       - backend
+
+  - name: app-with-cronjob2
+    chart: generic-app/app-with-cronjob
+    version: 0.1.0
+    installed: true
+    wait: true
+    timeout: 600
+    atomic: true
+    values:
+      - values/app-with-cronjob2/dev/values.yaml
+    needs:
+      - backend
