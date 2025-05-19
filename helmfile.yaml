@@ -4,7 +4,6 @@ repositories:
 
 releases:
   - name: frontend
-    namespace: default
     chart: generic-app/generic-app
     version: 0.1.0
     installed: true
@@ -17,7 +16,6 @@ releases:
       - backend
 
   - name: backend
-    namespace: default
     chart: generic-app/generic-app
     version: 0.1.0
     installed: true
@@ -28,7 +26,6 @@ releases:
       - values/backend/dev/values.yaml
 
   - name: app-with-cronjob
-    namespace: default
     chart: generic-app/app-with-cronjob
     version: 0.1.0
     installed: true
