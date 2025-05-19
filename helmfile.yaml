@@ -1,18 +1,49 @@
+environments:
+  default:
+    values:
+      - environments/dev/values.yaml
+  dev:
+    values:
+      - environments/dev/values.yaml
+  staging:
+    values:
+      - environments/staging/values.yaml
+  prod:
+    values:
+      - environments/prod/values.yaml
+
 repositories:
   - name: generic-app
     url: https://xuantu55.github.io/helm-chart-example
 
 releases:
-  - name: my-generic-app
-    namespace: default
+  - name: {{ .Values.appName }}
+    namespace: {{ .Values.namespace | default "default" }}
     chart: generic-app/generic-app
-    version: 0.1.0
+    version: {{ .Values.appVersion | default "0.1.0" }}
+    installed: {{ .Values.installed | default true }}
+    wait: true
+    timeout: 600
+    atomic: true
     values:
-      - values/frontend-values.yaml
+      - values/{{ .Values.appName }}{{ .Environment.Name }}/values.yaml
+    hooks:
+      - events: ["prepare", "cleanup"]
+        showlogs: true
+        command: "echo"
+        args: ["{{`{{.Release.Name}}`}}", "{{`{{.Environment.Name}}`}}"]
+    needs:
+      - kube-system/ingress-nginx
 
-  - name: my-app-with-cronjob
-    namespace: default
+  - name: {{ .Values.appName }}
+    namespace: {{ .Values.namespace | default "default" }}
     chart: generic-app/app-with-cronjob
-    version: 0.1.0
+    version: {{ .Values.appVersion | default "0.1.0" }}
+    installed: {{ .Values.installed | default true }}
+    wait: true
+    timeout: 600
+    atomic: true
     values:
-      - values/app-with-cronjob-values.yaml
+      - values/{{ .Values.appName }}{{ .Environment.Name }}/values.yaml
+    needs:
+      - my-generic-app
