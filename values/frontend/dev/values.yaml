@@ -14,4 +14,4 @@ resources:
 containerPort: 8080
 service:
   port: 80
-  type: ClusteIP
+  type: ClusterIP
