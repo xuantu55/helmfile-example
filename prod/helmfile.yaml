@@ -13,7 +13,7 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/frontend/dev/values.yaml
+      - values/frontend/values.yaml
     needs:
       - backend
 
@@ -25,7 +25,7 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/backend/dev/values.yaml
+      - values/backend/values.yaml
 
   - name: app-with-cronjob
     chart: generic-app-cronjob/generic-app-cronjob
@@ -35,7 +35,7 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/app-with-cronjob/dev/values.yaml
+      - values/app-with-cronjob/values.yaml
     needs:
       - backend
 
@@ -47,6 +47,6 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/app-with-cronjob2/dev/values.yaml
+      - values/app-with-cronjob2/values.yaml
     needs:
       - backend
