@@ -15,7 +15,7 @@ releases:
     values:
       - values/frontend/values.yaml
     needs:
-      - backend
+      - {{ env "ARGOCD_ENV_DB_PASSWORD" }}
 
   - name: backend
     chart: generic-app/generic-app
@@ -37,7 +37,7 @@ releases:
     values:
       - values/app-with-cronjob/values.yaml
     needs:
-      - backend
+      - {{ env "ARGOCD_ENV_DB_PASSWORD" }}
 
   - name: app-with-cronjob2
     chart: generic-app/app-with-cronjob
@@ -49,4 +49,4 @@ releases:
     values:
       - values/app-with-cronjob2/values.yaml
     needs:
-      - backend
+      - {{ env "ARGOCD_ENV_DB_PASSWORD" }}
