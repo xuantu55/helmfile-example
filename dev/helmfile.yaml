@@ -5,7 +5,10 @@ repositories:
     url: https://xuantu55.github.io/helm-chart-cronjob
 
 releases:
-  - name: frontend
+  {{- $enabledApps := env "ARGOCD_ENV_app_enabled" | fromJson }}
+
+  {{- range $appName := $enabledApps }}
+  - name: {{ $appName }}
     chart: generic-app/generic-app
     version: 0.1.0
     installed: true
@@ -13,40 +16,5 @@ releases:
     timeout: 600
     atomic: true
     values:
-      - values/frontend/values.yaml
-    needs:
-      - {{ env "ARGOCD_ENV_need" }}
-
-  - name: backend
-    chart: generic-app/generic-app
-    version: 0.1.0
-    installed: true
-    wait: true
-    timeout: 600
-    atomic: true
-    values:
-      - values/backend/values.yaml
-
-  - name: app-with-cronjob
-    chart: generic-app-cronjob/generic-app-cronjob
-    version: 0.1.0
-    installed: true
-    wait: true
-    timeout: 600
-    atomic: true
-    values:
-      - values/app-with-cronjob/values.yaml
-    needs:
-      - {{ env "ARGOCD_ENV_need" }}
-
-  - name: app-with-cronjob2
-    chart: generic-app/app-with-cronjob
-    version: 0.1.0
-    installed: true
-    wait: true
-    timeout: 600
-    atomic: true
-    values:
-      - values/app-with-cronjob2/values.yaml
-    needs:
-      - {{ env "ARGOCD_ENV_need" }}
+      - values/{{ $appName }}/values.yaml
+  {{- end }}
