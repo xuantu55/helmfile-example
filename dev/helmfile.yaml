@@ -9,7 +9,7 @@ releases:
 
   {{- range $appName := $enabledApps }}
   - name: {{ $appName }}
-    chart: generic-app/generic-app
+    chart: {{ env "ARGOCD_ENV_chart" | default "generic-app/generic-app" }}
     version: 0.1.0
     installed: true
     wait: true
