@@ -1,6 +1,6 @@
 appName: backend
 namespace: default
-replicaCount: 2
+replicaCount: 3
 image:
   repository: nginx
   tag: latest
