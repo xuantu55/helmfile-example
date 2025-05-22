@@ -1,0 +1,52 @@
+repositories:
+  - name: generic-app
+    url: https://xuantu55.github.io/helm-chart-example
+  - name: generic-app-cronjob
+    url: https://xuantu55.github.io/helm-chart-cronjob
+
+releases:
+  - name: frontend
+    chart: generic-app/generic-app
+    version: 0.1.0
+    installed: true
+    wait: true
+    timeout: 600
+    atomic: true
+    values:
+      - values/frontend/values.yaml
+    needs:
+      - backend
+
+  - name: backend
+    chart: generic-app/generic-app
+    version: 0.1.0
+    installed: true
+    wait: true
+    timeout: 600
+    atomic: true
+    values:
+      - values/backend/values.yaml
+
+  - name: app-with-cronjob
+    chart: generic-app-cronjob/generic-app-cronjob
+    version: 0.1.0
+    installed: true
+    wait: true
+    timeout: 600
+    atomic: true
+    values:
+      - values/app-with-cronjob/values.yaml
+    needs:
+      - backend
+
+  - name: app-with-cronjob2
+    chart: generic-app/app-with-cronjob
+    version: 0.1.0
+    installed: true
+    wait: true
+    timeout: 600
+    atomic: true
+    values:
+      - values/app-with-cronjob2/values.yaml
+    needs:
+      - backend
